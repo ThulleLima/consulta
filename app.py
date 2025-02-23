@@ -6,6 +6,10 @@ st.set_page_config(page_title='CONSULTA', page_icon='📃', layout="wide")
 
 df = pd.read_csv('THU.csv')
 
+# Exibir logomarca
+col1, col2 = st.columns([0.1, 0.9])
+with col1:
+    st.image("logo.png", width=100)
 
 # Criar a interface do Streamlit
 st.title("CONSULTA DE DADOS - CNAE & SERVIÇO")
