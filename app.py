@@ -4,7 +4,7 @@ from PIL import Image
 
 st.set_page_config(page_title='CONSULTA', page_icon='📃', layout="wide")
 
-df = pd.read_csv('THU.csv')
+df = pd.read_csv('THU.csv', dtype={"CÓDIGO SERVIÇO": str})
 
 # Exibir logomarca
 col1, col2 = st.columns([0.1, 0.9])
