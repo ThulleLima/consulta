@@ -9,7 +9,7 @@ df = pd.read_csv('THU.csv', dtype={"CÓDIGO SERVIÇO": str})
 # Exibir logomarca
 col1, col2 = st.columns([0.1, 0.9])
 with col1:
-    st.image("logo.png", width=100)
+    st.image("logo.png", width=200)
 
 # Criar a interface do Streamlit
 st.title("CONSULTA DE DADOS - CNAE & SERVIÇO")
@@ -48,6 +48,6 @@ with tab2:
                 search_service, case=False, na=False).any(), axis=1)
         ]
 
-    st.table(filtered_service)  # Usa st.table() para ajustar melhor o texto
-
+    st.write(filtered_service.to_html(escape=False, index=False).replace('<th>', '<th style="text-align:center">'), unsafe_allow_html=True)
+    
 st.write("© 2025 - Desenvolvido por [Thulle Lima]")
