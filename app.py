@@ -15,14 +15,13 @@ with col1:
 st.title("CONSULTA DE DADOS - CNAE & SERVIÇO")
 
 # Criar abas
-tab1, tab2, tab3 = st.tabs(["CNAE", "Serviço","Calculadora IR/INSS"])
+tab1, tab2, tab3 = st.tabs(["CNAE", "Serviço", "Calculadora IR/INSS"])
 
 with tab1:
     st.subheader("🗃️ Tabela de CNAE")
     search_cnae = st.text_input("Pesquisar por CNAE ou Descrição")
 
-    filtered_cnae = df[["CÓDIGO CNAE", "LINK CNAE",
-                        "DESCRIÇÃO CNAE"]].drop_duplicates()
+    filtered_cnae = df[["CÓDIGO CNAE", "LINK CNAE", "DESCRIÇÃO CNAE"]].drop_duplicates()
     if search_cnae:
         filtered_cnae = filtered_cnae[
             filtered_cnae.apply(lambda row: row.astype(str).str.contains(
@@ -35,13 +34,12 @@ with tab1:
     filtered_cnae = filtered_cnae[["CÓDIGO CNAE", "🔗", "DESCRIÇÃO CNAE"]]
 
     st.write(filtered_cnae.to_html(escape=False, index=False).replace('<th>', '<th style="text-align:center">'), unsafe_allow_html=True)
+
 with tab2:
     st.subheader("🛠️ Tabela de Serviço")
-    search_service = st.text_input(
-        "Pesquisar por Código, Descrição ou Local de Recolhimento")
+    search_service = st.text_input("Pesquisar por Código, Descrição ou Local de Recolhimento")
 
-    filtered_service = df[["CÓDIGO SERVIÇO",
-                           "DESCRIÇÃO SERVIÇO", "LOCAL DE RECOLHIMENTO - ISS"]]
+    filtered_service = df[["CÓDIGO SERVIÇO", "DESCRIÇÃO SERVIÇO", "LOCAL DE RECOLHIMENTO - ISS"]]
     if search_service:
         filtered_service = filtered_service[
             filtered_service.apply(lambda row: row.astype(str).str.contains(
@@ -49,18 +47,14 @@ with tab2:
         ]
 
     st.write(filtered_service.to_html(escape=False, index=False).replace('<th>', '<th style="text-align:center">'), unsafe_allow_html=True)
-    
- with tab3:
-    st.subheader("🧮Calculadora IR/INSS pessoa física")
+
+with tab3:
+    st.subheader("🧮 Calculadora IR/INSS pessoa física")
 
     colE, colC, colD = st.columns(3)
-    with colE:
-        st.markdown("")
     with colC:
-        st.image("tabela.png", use_column_width=True,caption="Valores utilizados como referência")
-    with colE:
-        st.markdown("")
-
+        st.image("tabela.png", use_column_width=True, caption="Valores utilizados como referência")
+    
     valor_servico = st.number_input("Informe o valor do serviço", min_value=0.0, format="%.2f")
     
     if valor_servico > 0:
