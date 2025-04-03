@@ -53,7 +53,7 @@ with tab3:
 
     colE, colC, colD = st.columns(3)
     with colC:
-        st.image("tabela.png", use_column_width=True, caption="Valores utilizados como referência")
+        st.image("tabela.png", use_container_width=True, caption="Valores utilizados como referência")
     
     valor_servico = st.number_input("Informe o valor do serviço", min_value=0.0, format="%.2f")
     
